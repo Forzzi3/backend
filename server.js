@@ -25,6 +25,14 @@ app.post('/api/save', (req, res) => {
   });
 });
 
+app.get('/api/read', (req, res) => {
+  fs.readFile('data.txt', 'utf-8', (err, data) => {
+    if (err) 
+        return res.status(500).json({ error: 'Ошибка в чтении файла' });
+    res.json({ content: data });
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
